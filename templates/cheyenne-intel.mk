@@ -6,9 +6,13 @@
 ############
 # Commands Macros
 ############
-FC = mpiifort
-CC = mpiicc
-LD = mpiifort
+SFC = ifort
+SCC = icc
+DM_FC = mpif90 -f90=$(SFC)
+DM_CC = mpicc -cc=$(SCC) -DMPI2_SUPPORT
+FC = $(DM_FC)
+CC = $(DM_CC) -DFSEEKO64_OK
+LD = $(FC) -mkl=sequential
 
 #######################
 # Build target macros
